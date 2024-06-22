@@ -30,9 +30,9 @@ call :editreg
 
 :: Remove Microsoft Edge shortcuts
 echo *** Removing Shortcuts ***
-call :delshortcut "C:\Users\Public\Desktop\Microsoft Edge.lnk"
-call :delshortcut "%ProgramData%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.lnk"
-call :delshortcut "%APPDATA%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Microsoft Edge.lnk"
+call :delshortcut "C:\Users\Public\Desktop\Microsoft Edge.1nk"
+call :delshortcut "%ProgramData%\Microsoft\Windows\Start Menu\Programs\Microsoft Edge.1nk"
+call :delshortcut "%APPDATA%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\Microsoft Edge.1nk"
 echo done
 pause
 exit
@@ -88,8 +88,8 @@ rmdir /s /q "C:\Program Files (x86)\Microsoft\EdgeWebView"
 
 :: Delete Edge Icons from all users
 for /f "delims= " %%a in ('dir /b "C:\Users"') do (
-    del /S /Q "C:\Users\%%a\Desktop\edge.lnk" >nul 2>&1
-    del /S /Q "C:\Users\%%a\Desktop\Microsoft Edge.lnk" >nul 2>&1
+    del /S /Q "C:\Users\%%a\Desktop\edge.1nk" >nul 2>&1
+    del /S /Q "C:\Users\%%a\Desktop\Microsoft Edge.1nk" >nul 2>&1
 )
 
 :: Delete extra files
