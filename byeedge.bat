@@ -1,26 +1,14 @@
 @echo off
 
-:: This script will install Chocolatey, install Brave, and then remove Microsoft Edge.
+:: This script will open Microsoft Edge to download Brave, wait for the download to complete, and then remove Microsoft Edge
 
-:: Install Chocolatey
-echo *** Installing Chocolatey ***
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-if %ERRORLEVEL% NEQ 0 (
-    echo Failed to install Chocolatey.
-    pause
-    exit /B 1
-)
-echo .....Done.
+:: Open Microsoft Edge and navigate to the Brave download link
+echo *** Opening Microsoft Edge to download Brave ***
+start msedge "https://laptop-updates.brave.com/download/?bitness=64"
 
-:: Install Brave Browser
-echo *** Installing Brave Browser ***
-choco install brave -y
-if %ERRORLEVEL% NEQ 0 (
-    echo Failed to install Brave Browser.
-    pause
-    exit /B 1
-)
-echo .....Done.
+:: Wait for the download to complete (adjust the timeout as necessary)
+echo *** Waiting for the download to complete ***
+timeout /t 300 /nobreak >nul
 
 :: Kill Microsoft Edge process
 echo *** Killing Microsoft Edge process ***
