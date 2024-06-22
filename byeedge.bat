@@ -79,3 +79,24 @@ if exist "%1" (
     echo Shortcut %1 not found
 )
 exit /B 0
+
+:: Delete Microsoft Edge Folders
+rmdir /s /q "C:\Program Files (x86)\Microsoft\Edge"
+rmdir /s /q "C:\Program Files (x86)\Microsoft\EdgeCore"
+rmdir /s /q "C:\Program Files (x86)\Microsoft\EdgeWebView"
+rmdir /s /q "C:\Program Files (x86)\Microsoft\EdgeWebView"
+
+:: Delete Edge Icons from all users
+for /f "delims= " %%a in ('dir /b "C:\Users"') do (
+    del /S /Q "C:\Users\%%a\Desktop\edge.lnk" >nul 2>&1
+    del /S /Q "C:\Users\%%a\Desktop\Microsoft Edge.lnk" >nul 2>&1
+)
+
+:: Delete extra files
+if exist "C:\Windows\System32\MicrosoftEdgeCP.exe" (
+    for /f "delims= " %%a in ('dir /b "C:\Windows\System32MicrosoftEdge*"') do (
+        takeown /f "C:'Windows\System32\%%a" > NUL 2&1
+        icacls "C:\Windows\System32\%%a" /inheriance:e /grant "UserName": (OI)(CI)F > NUL 2>&1
+        del /f /q "C:\Windows\System32\%%a" > NUL 2>&1
+    )
+)
