@@ -4,11 +4,10 @@
 
 :: Open Microsoft Edge and navigate to the Brave download link
 echo *** Opening Microsoft Edge to download Brave ***
-start msedge "https://laptop-updates.brave.com/download/?bitness=64"
+start msedge "https://laptop-updates.brave.com/download/bitness=64"
 
-:: Wait for the download to complete (adjust the timeout as necessary)
-echo *** Waiting for the download to complete ***
-timeout /t 300 /nobreak >nul
+echo Press any key when the download is completed...
+pause > NUL
 
 :: Kill Microsoft Edge process
 echo *** Killing Microsoft Edge process ***
